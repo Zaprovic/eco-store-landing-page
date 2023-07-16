@@ -48,6 +48,48 @@ main {
 	padding-inline: 2.4rem;
 }
 
+//mixing for styled card
+@mixin styled-card($bg-color, $text-color, $svg-stroke) {
+	background-color: $bg-color;
+	color: $text-color;
+	width: 176px;
+	height: 276px;
+	border-radius: 1rem;
+	padding: 2.8rem 2rem;
+	position: relative;
+
+	.wishlist {
+		width: 16px;
+		position: absolute;
+		top: -10px;
+		right: 6px;
+	}
+
+	figure {
+		img {
+			width: 132px;
+			height: 164px;
+			object-fit: cover;
+		}
+	}
+
+	h3 {
+		font-size: 1.4rem;
+		font-weight: 600;
+		margin-top: 1rem;
+	}
+
+	p {
+		font-size: 0.9rem;
+	}
+
+	svg {
+		path {
+			stroke: $svg-stroke;
+		}
+	}
+}
+
 header {
 	width: 100%;
 	display: flex;
@@ -237,40 +279,6 @@ main {
 		overflow-x: scroll;
 	}
 
-	//inheritance
-	.styled-card {
-		width: 176px;
-		height: 276px;
-		border-radius: 1rem;
-		padding: 2.8rem 2rem;
-		position: relative;
-
-		.wishlist {
-			width: 16px;
-			position: absolute;
-			top: -10px;
-			right: 6px;
-		}
-
-		figure {
-			img {
-				width: 132px;
-				height: 164px;
-				object-fit: cover;
-			}
-		}
-
-		h3 {
-			font-size: 1.4rem;
-			font-weight: 600;
-			margin-top: 1rem;
-		}
-
-		p {
-			font-size: 0.9rem;
-		}
-	}
-
 	.health-care-section {
 		h2 {
 			@extend .section-heading;
@@ -280,9 +288,11 @@ main {
 			@extend .cards-container-global;
 
 			.card-health-care {
-				@extend .styled-card;
-				background-color: $clr-secondary;
-				color: $clr-primary-text;
+				@include styled-card(
+					$clr-secondary,
+					$clr-primary-text,
+					$clr-primary-text
+				);
 			}
 		}
 
@@ -353,9 +363,7 @@ main {
 			@extend .cards-container-global;
 
 			.card-home-decoration {
-				@extend .styled-card;
-				background-color: $cl-tertiary;
-				color: white;
+				@include styled-card($cl-tertiary, white, white);
 			}
 		}
 
